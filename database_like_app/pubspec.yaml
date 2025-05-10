@@ -39,6 +39,7 @@ dependencies:
   cupertino_icons: ^1.0.8
   adaptive_dialog: ^2.4.1
   panara_dialogs: ^0.1.5
+  quickalert: ^1.1.0
 
 dev_dependencies:
   flutter_test:

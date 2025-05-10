@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:panara_dialogs/panara_dialogs.dart';
+import 'package:quickalert/models/quickalert_type.dart';
+import 'package:quickalert/widgets/quickalert_dialog.dart';
 import '../services/dbhelper.service.dart';
 
 class notesPage extends StatefulWidget {
@@ -250,7 +252,15 @@ class _MyHomePageState extends State<notesPage> {
                               onPressed: () async {
                                 Navigator.pop(dialogContext);
                                 _notes.isNotEmpty
-                                    ? await _deleteAllNotes()
+                                    ? {
+                                      await _deleteAllNotes(),
+                                      QuickAlert.show(
+                                        context: context,
+                                        type: QuickAlertType.success,
+                                        text:
+                                            "You successfully deleted your notes",
+                                      ),
+                                    }
                                     : PanaraInfoDialog.show(
                                       context,
                                       title: "Oops",
