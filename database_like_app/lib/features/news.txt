@@ -1,0 +1,6 @@
+long pressing on a data row => {
+    showDialog() with 2 options :
+    delete and edit ; 
+    need to Do the edit part 
+    with the update crud in sqflite
+}
