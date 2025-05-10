@@ -1,5 +1,5 @@
-import 'package:adaptive_dialog/adaptive_dialog.dart';
 import 'package:flutter/material.dart';
+import 'package:panara_dialogs/panara_dialogs.dart';
 import '../services/dbhelper.service.dart';
 
 class notesPage extends StatefulWidget {
@@ -236,25 +236,31 @@ class _MyHomePageState extends State<notesPage> {
                   showDialog(
                     context: context,
                     builder:
-                        (context) => AlertDialog(
+                        (BuildContext dialogContext) => AlertDialog(
                           title: const Text("Delete All Notes"),
                           content: const Text(
                             "Are you sure you want to delete all your notes?",
                           ),
                           actions: [
                             TextButton(
-                              onPressed: () => Navigator.pop(context),
+                              onPressed: () => Navigator.pop(dialogContext),
                               child: const Text("Cancel"),
                             ),
                             TextButton(
                               onPressed: () async {
-                                Navigator.pop(context);
+                                Navigator.pop(dialogContext);
                                 _notes.isNotEmpty
                                     ? await _deleteAllNotes()
-                                    : showOkAlertDialog(
-                                      context: context,
+                                    : PanaraInfoDialog.show(
+                                      context,
                                       title: "Oops",
-                                      message: "there is nothing to delete",
+                                      message:
+                                          "you don't have anything to delete",
+                                      buttonText: "Okay",
+                                      onTapDismiss: () {
+                                        Navigator.pop(context);
+                                      },
+                                      panaraDialogType: PanaraDialogType.normal,
                                     );
                               },
                               child: const Text("Delete"),
